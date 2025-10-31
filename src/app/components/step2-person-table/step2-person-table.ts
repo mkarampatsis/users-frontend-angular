@@ -7,9 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './step2-person-table.css',
 })
 export class Step2PersonTable {
+  
   user = {
     firstname:'Bob',
     lastname: 'Dylan',
     email:'bob.dylan@aueb.gr'
   }
+  
 }
