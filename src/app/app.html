@@ -52,3 +52,31 @@
     <app-step2-person-table></app-step2-person-table>
   </div>
 </div>
+
+<!-- This added After Step 3 Component With Input -->
+<div class="container">
+  <h3>From Step3 Component with @Input()</h3>
+  <p>
+    Hello <strong>{{ name }}</strong>! Nice to meet you.
+  </p>
+
+  <div class="d-flex gap-5 text-nowrap">
+   <app-step3-person-table-input [person]="person1"></app-step3-person-table-input>
+   <app-step3-person-table-input></app-step3-person-table-input>
+   <app-step3-person-table-input [person]="person2"></app-step3-person-table-input>
+  </div>
+</div>
+
+<!-- This added After Step 4 with @for -->
+<div class="container">
+  <h3>From Step4 with for</h3>
+  <p>
+    Hello <strong>{{ name }}</strong>! Nice to meet you.
+  </p>
+
+  <div class="d-flex flex-wrap gap-5 text-nowrap">
+   @for (p of persons; track p ) {
+    <app-step3-person-table-input [person]="p"></app-step3-person-table-input>
+  }
+  </div>
+</div>
