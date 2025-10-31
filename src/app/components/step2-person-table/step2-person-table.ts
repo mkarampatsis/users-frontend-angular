@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-step2-new-component',
+  selector: 'app-step2-person-table',
   imports: [],
-  templateUrl: './step2-new-component.html',
-  styleUrl: './step2-new-component.css',
+  templateUrl: './step2-person-table.html',
+  styleUrl: './step2-person-table.css',
 })
-export class Step2NewComponent {
+export class Step2PersonTable {
   user = {
     firstname:'Bob',
     lastname: 'Dylan',

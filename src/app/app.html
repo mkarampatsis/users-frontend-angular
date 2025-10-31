@@ -15,14 +15,14 @@
 </div>
 
 <div class="container mt-4">
-  <h3>Welcome to Angular</h3>
+  <h3>From App Component</h3>
   <p>
     Hello <strong>{{ name }}</strong>! Nice to meet you.
   </p>
 
   <table class="table table-bordered w-50">
     <caption class="caption-top fw-bold bg-primary text-light text-center">
-      User Details from App Component
+      User Details
     </caption>
     <tr>
       <td class="fw-semibold text-end">First Name</td>
@@ -39,14 +39,16 @@
   </table>
 </div>
 
+<!-- This added After Step 2 Component Created -->
 <div class="container">
-  <h3>Welcome to Angular</h3>
+  <h3>From Step2 Component</h3>
   <p>
     Hello <strong>{{ name }}</strong>! Nice to meet you.
   </p>
 
   <div class="d-flex gap-5 text-nowrap">
-    <app-step2-new-component></app-step2-new-component>
-
+    <app-step2-person-table></app-step2-person-table>
+    <app-step2-person-table></app-step2-person-table>
+    <app-step2-person-table></app-step2-person-table>
   </div>
 </div>
