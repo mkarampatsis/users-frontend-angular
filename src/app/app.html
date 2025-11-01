@@ -67,16 +67,41 @@
   </div>
 </div>
 
-<!-- This added After Step 4 with @for -->
+<!-- This added After Step 4 Component With For -->
 <div class="container">
-  <h3>From Step4 with for</h3>
-  <p>
-    Hello <strong>{{ name }}</strong>! Nice to meet you.
-  </p>
+  <h3>From Step4 Component with For</h3>
+  <app-step4-for-directive></app-step4-for-directive>
+</div>
 
-  <div class="d-flex flex-wrap gap-5 text-nowrap">
-   @for (p of persons; track p ) {
-    <app-step3-person-table-input [person]="p"></app-step3-person-table-input>
-  }
+<!-- This added After Step 5 Component With Event Bind -->
+<div class="container">
+  <h3>From Step5 Component with Event Bind</h3>
+  <app-step5-event-bind></app-step5-event-bind>
+</div>
+
+This
+<div class="container mt-2">
+  <div class="d-flex flex-column gap-2">
+    <nav class="navbar navbar-dark bg-primary justify-content-between">
+      <a class="navbar-brand ms-3 cursor-pointer" role="button" routerLink=""
+        >CF5 - Angular Introduction</a
+      >
+    </nav>
+    <div class="d-flex flex-row gap-2">
+      <div class="d-flex flex-column text-nowrap bg-light p-2">
+        <span role="button" routerLink="component-input-example"
+          >Component Input Example</span
+        >
+        <span role="button" routerLink="for-directive-example"
+          >{{ "@for" }} Directive Example</span
+        >
+        <span role="button" routerLink="event-bind-example"
+          >Event Bind Example</span
+        >
+      </div>
+      <span class="flex-grow-1 p-2 text-nowrap"
+        ><router-outlet></router-outlet
+      ></span>
+    </div>
   </div>
 </div>
