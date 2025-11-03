@@ -22,5 +22,29 @@ export class Step7ListGroupMenu {
       text: 'Step9 Component Output',
       routerLink: 'component-output-example',
     },
+    {
+      text: 'Step10 Template Driven Form',
+      routerLink: 'template-driven-form-example',
+    },
+    { 
+      text: 'Step11 Reactive Form Example', 
+      routerLink: 'reactive-form-example' 
+    },
+    { 
+      text: 'Step12 HTTP Client Example', 
+      routerLink: 'http-client-example' 
+    },
+    {
+      text: 'Step13 User Login',
+      routerLink: 'user-login-example',
+    },
+    {
+      text: 'Step14 User Create Example',
+      routerLink: 'user-create-example',
+    },
+    // {
+    //   text: 'Restricted Content Example',
+    //   routerLink: 'restricted-content-example',
+    // },
   ];
 }

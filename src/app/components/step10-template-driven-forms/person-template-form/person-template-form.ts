@@ -38,8 +38,8 @@ export class PersonTemplateForm {
 
   onSubmit(value: any) {
     console.log(this.form);
-    console.log(this.form?.form.get('givenName')!.value);
-    console.log(this.form?.form.controls['surName'].value);
+    console.log(this.form?.form.get('firstname')!.value);
+    console.log(this.form?.form.controls['lastname'].value);
     this.person.emit(value as Person);
   }
   

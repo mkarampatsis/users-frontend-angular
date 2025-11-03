@@ -47,7 +47,8 @@ export class Step8SimpleDataTable {
   // ↓	U+2193	Down arrow
 
   
+  // Added on Step 9 for component aoutput
   onPersonClicked(person: Person) {
-    console.log(person)
+    this.personCLicked.emit(person);
   }
 }

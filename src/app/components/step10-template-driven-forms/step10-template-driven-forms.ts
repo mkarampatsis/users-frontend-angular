@@ -10,7 +10,6 @@ import { Step8SimpleDataTable } from "../step8-simple-data-table/step8-simple-da
   imports: [
     PersonTemplateForm,
     Step3PersonTableInput,
-    Step8SimpleDataTableShow,
     Step8SimpleDataTable
 ],
   templateUrl: './step10-template-driven-forms.html',
