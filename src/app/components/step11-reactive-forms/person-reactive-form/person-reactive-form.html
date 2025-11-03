@@ -1,1 +1,48 @@
-<p>person-reactive-form works!</p>
+<div class="d-flex flex-column">
+  <h5>New Person Form</h5>
+  <form [formGroup]="form" class="d-flex flex-column">
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input matInput type="text" formControlName="firstname" />
+      @if (form.get("firstname")!.invalid && form.get("firstname")!.touched) {
+        <mat-error>First Name is required</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input matInput type="text" formControlName="lastname" />
+      @if (form.get("lastname")!.invalid && form.get("lastname")!.touched) {
+        <mat-error>Last Name is required</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput type="text" formControlName="email" />
+      @if (form.get("email")!.invalid && form.get("email")!.touched) {
+        <mat-error>Email is missing or invalid</mat-error>
+      }
+    </mat-form-field>
+    <!-- {{form.value | json}} -->
+  </form>
+  <button
+    mat-flat-button
+    color="primary"
+    [disabled]="form.invalid"
+    (click)="onSubmit()"
+  >
+  <!-- (click)="onSubmit(form.value)" -->
+    Submit
+  </button>
+  <button
+    (click)="onSetValue()"
+  >
+    Set value
+  </button>
+</div>
+
+<!-- (click)="onSubmit(form.value)" -->
+<!-- You're right to expect that if givenName is a required field, it shouldn't be null. But TypeScript and Angular's type inference don’t assume that your form fields are always filled out, even if validators are in place.
+Why givenName: string | null?
+Angular defines form.value using a type that includes null for each control because:
+Before the form is filled, the initial value is often null (or '', depending on how you initialized it).
+Validators are runtime logic, but TypeScript types are static. So TypeScript can't guarantee that the value won't be null when you access it — even if it's marked as required. -->
