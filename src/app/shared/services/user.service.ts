@@ -42,7 +42,7 @@ export class UserService {
   }
 
   loginUser(credentials: Credentials) {
-    return this.http.post<{ status:boolean, data: string }>(
+    return this.http.post<{ token:string, user: { id: string, username: string } }>(
       `${API_AUTH_URL}/login`,
       credentials,
     );
@@ -51,7 +51,7 @@ export class UserService {
   logoutUser() {
     this.user.set(null);
     localStorage.removeItem('access_token');
-    this.router.navigate(['login']);
+    this.router.navigate(['user-login-example']);
   }
 
   registerUser(user: IUser) {

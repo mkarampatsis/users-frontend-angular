@@ -6,6 +6,7 @@ import { Step5EventBind } from './components/step5-event-bind/step5-event-bind';
 import { Person } from './shared/interfaces/person';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { Step7ListGroupMenu } from './components/step7-list-group-menu/step7-list-group-menu';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,8 @@ import { Step7ListGroupMenu } from './components/step7-list-group-menu/step7-lis
     Step3PersonTableInput, 
     Step4ForDirective,
     Step5EventBind,
-    Step7ListGroupMenu
+    Step7ListGroupMenu,
+    NavbarComponent
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'

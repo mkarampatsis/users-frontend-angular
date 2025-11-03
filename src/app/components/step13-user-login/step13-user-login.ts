@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, ChangeDetectorRef  } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -9,7 +9,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Credentials, LoggedInUser } from 'src/app/shared/interfaces/mongo-backend';
 import { UserService } from 'src/app/shared/services/user.service';
 import { jwtDecode } from 'jwt-decode';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-step13-user-login',
@@ -22,6 +21,7 @@ export class Step13UserLogin {
   router = inject(Router);
   http = inject(Router);
   route= inject(ActivatedRoute);
+  cdr = inject(ChangeDetectorRef);
 
   invalidLogin = false;
 
@@ -53,8 +53,7 @@ export class Step13UserLogin {
     const credentials = this.form.value as Credentials;
     this.userService.loginUser(credentials).subscribe({
       next: (response) => {
-
-        const access_token = response.data;
+        const access_token = response.token;
         localStorage.setItem('access_token', access_token);
 
         const decodedTokenSubject = jwtDecode(access_token) as unknown as LoggedInUser;
@@ -65,11 +64,12 @@ export class Step13UserLogin {
           roles: decodedTokenSubject.roles,
         });
         console.log("Token", decodedTokenSubject);
-        this.router.navigate(['user-registration-example']);
+        this.router.navigate(['user-create-example']);
       },
       error: (error) => {
         console.error('Login error:', error);
         this.invalidLogin = true;
+        this.cdr.detectChanges();
       },
     });
   }
