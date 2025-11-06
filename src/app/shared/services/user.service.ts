@@ -55,7 +55,7 @@ export class UserService {
   }
 
   registerUser(user: IUser) {
-    return this.http.post<{ msg: string }>(`${API_URL}/create`, user);
+    return this.http.post<{ msg: string }>(`${API_URL}`, user);
   }
 
   check_duplicate_email(email: string) {

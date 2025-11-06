@@ -1,4 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
     AbstractControl,
     FormControl,
@@ -16,6 +17,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 @Component({
   selector: 'app-step14-user-create',
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -95,6 +97,7 @@ export class Step14UserCreate {
     
     this.userService.registerUser(user).subscribe({
       next: (response) => {
+        console.log("respon", response);
         this.registrationStatus = { success: true, message: "User registered" };
       },
       error: (response) => {
@@ -113,7 +116,8 @@ export class Step14UserCreate {
   check_duplicate_email() {
     const email = this.form.get('email')?.value;
     if (email) {
-      this.userService.check_duplicate_email(email).subscribe({
+      this.userService.check_duplicate_email(email).subscribe(
+        {
         next: (response) => {
           console.log(response);
           this.form.get('email')?.setErrors(null);
@@ -124,7 +128,8 @@ export class Step14UserCreate {
           console.error(message);
           this.form.get('email')?.setErrors({ duplicateEmail: true });
         },
-      });
+      }
+    );
     }
   }
 }

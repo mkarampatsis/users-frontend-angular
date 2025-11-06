@@ -1,5 +1,5 @@
 <h4>User Registration Example</h4>
-
+{{registrationStatus | json}}
 @if (registrationStatus.message === "Not attempted yet.") {
   <div class="d-flex flex-column mt-2 w-50">
     <form [formGroup]="form" class="d-flex flex-column">
