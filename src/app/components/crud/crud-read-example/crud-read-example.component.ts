@@ -19,7 +19,6 @@ export class CrudReadExampleComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getAllUsers()
       .subscribe((result) => {
-        console.log(result)
         this.users.set(result)
       })  
   }
