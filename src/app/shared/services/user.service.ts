@@ -58,12 +58,6 @@ export class UserService {
     return this.http.post<{ msg: string }>(`${API_URL}`, user);
   }
 
-  check_duplicate_email(email: string) {
-    return this.http.get<{ msg: string }>(
-      `${API_URL}/check_duplicate_email/${email}`,
-    );
-  }
-
   isTokenExpired(): boolean {
     const token = localStorage.getItem("access_token");
     if (!token) return true;
@@ -76,6 +70,16 @@ export class UserService {
     } catch (e) {
       return true; // treat invalid token as expired
     }
+  }
+
+  getAllUsers(){
+    return this.http.get<IUser[]>(`${API_URL}`);
+  }
+
+  getUserByEmail(email: string) {
+    return this.http.get<IUser>(
+      `${API_URL}/email/${email}`,
+    );
   }
 }
 

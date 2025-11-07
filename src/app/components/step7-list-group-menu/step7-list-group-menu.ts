@@ -42,6 +42,7 @@ export class Step7ListGroupMenu {
       text: 'Step14 User Create Example',
       routerLink: 'user-create-example',
     },
+    { text: 'CRUD Example', routerLink: 'crud-example' },
     // {
     //   text: 'Restricted Content Example',
     //   routerLink: 'restricted-content-example',

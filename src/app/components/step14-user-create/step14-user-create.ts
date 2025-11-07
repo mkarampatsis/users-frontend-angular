@@ -116,19 +116,27 @@ export class Step14UserCreate {
   check_duplicate_email() {
     const email = this.form.get('email')?.value;
     if (email) {
-      this.userService.check_duplicate_email(email).subscribe(
-        {
-        next: (response) => {
-          console.log(response);
-          this.form.get('email')?.setErrors(null);
-        },
-        error: (response) => {
-          console.log(response);
-          const message = response.error;
-          console.error(message);
-          this.form.get('email')?.setErrors({ duplicateEmail: true });
-        },
-      }
+      this.userService.getUserByEmail(email)
+        .subscribe((result) => {
+          if (result) {
+            console.log(result);
+            this.form.get('email')?.setErrors({ duplicateEmail: true });
+          } else {
+            this.form.get('email')?.setErrors(null);
+          }
+        }
+      //   {
+      //   next: (response) => {
+      //     console.log(response);
+      //     this.form.get('email')?.setErrors(null);
+      //   },
+      //   error: (response) => {
+      //     console.log(response);
+      //     const message = response.error;
+      //     console.error(message);
+      //     this.form.get('email')?.setErrors({ duplicateEmail: true });
+      //   },
+      // }
     );
     }
   }

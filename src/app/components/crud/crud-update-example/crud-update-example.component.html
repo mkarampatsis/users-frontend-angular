@@ -1,0 +1,111 @@
+<div class="d-flex flex-column gap-2">
+  <app-crud-navbar></app-crud-navbar>
+  <div>CRUD Update</div>
+
+  <form [formGroup]="searchForm" (ngSubmit)="search()">
+    <div class="d-flex gap-2">
+      <input
+        type="text"
+        formControlName="search"
+        placeholder="Search username"
+      />
+      <button 
+        type="submit" 
+        mat-raised-button
+        color="primary">
+          Search
+        </button>
+    </div>
+  </form>
+
+  {{this.form.value | json}}
+  @if (this.form.value) {
+    <h5>Update Customer</h5>
+    <form [formGroup]="form" class="d-flex flex-column gap-2 w-50">
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput type="text" formControlName="username" />
+        <!-- @if (form.get("givenName").invalid && form.get("givenName").touched) { -->
+          <mat-error>Το username είναι απαραίτητο</mat-error>
+        <!-- } -->
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Όνομα</mat-label>
+        <input matInput type="text" formControlName="firstname" />
+        <!-- @if (form.get("givenName").invalid && form.get("givenName").touched) { -->
+          <mat-error>Το όνομα είναι απαραίτητο</mat-error>
+        <!-- } -->
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Επώνυμο</mat-label>
+        <input matInput type="text" formControlName="lastname" />
+        <!-- @if (form.get("surName").invalid && form.get("surName").touched) { -->
+          <mat-error>Το επώνυμο είναι απαραίτητο</mat-error>
+        <!-- } -->
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="text" formControlName="email" />
+      </mat-form-field>
+      <div class="d-flex flex-column" formGroupName="address">
+        <mat-form-field>
+          <mat-label>Area</mat-label>
+          <input matInput type="text" formControlName="area" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Stret</mat-label>
+          <input matInput type="text" formControlName="street" />
+        </mat-form-field>
+      </div>
+      <div formArrayName="phone">
+        <div *ngFor="let p of phone.controls; let i = index" [formGroupName]="i" class="d-flex gap-3 align-items-center">
+          
+          <!-- Phone Number Field -->
+          <mat-form-field>
+            <mat-label>Phone Number</mat-label>
+            <input matInput type="text" formControlName="number" />
+            <!-- <mat-error *ngIf="phone.get('number').invalid && phone.get('number').touched" class="text-wrap"> -->
+            <mat-error>  
+              Ο αριθμός του τηλεφώνου είναι απαραίτητος
+            </mat-error>
+          </mat-form-field>
+          
+          <!-- Type Select Field -->
+          <mat-form-field>
+            <mat-label>Type</mat-label>
+            <mat-select formControlName="type">
+              <mat-option value="Mobile">Κινητό</mat-option>
+              <mat-option value="Work">Εργασία</mat-option>
+              <mat-option value="Home">Σπίτι</mat-option>
+            </mat-select>
+            <!-- <mat-error *ngIf="phone.get('type').invalid && phone.get('type').touched" class="text-wrap"> -->
+            <mat-error>  
+              Πρέπει να διαλέξετε κάποιον τύπο τηλεφώνου
+            </mat-error>
+          </mat-form-field>
+          
+          <!-- Delete Button -->
+          <mat-icon *ngIf="phone.controls.length > 1" role="button" (click)="removePhoneNumber(i)" class="cursor-pointer">
+            delete
+          </mat-icon>
+          
+          <!-- Add Button -->
+          <mat-icon *ngIf="phone.controls[i].valid && i === phone.controls.length - 1" role="button" (click)="addPhoneNumber()" class="cursor-pointer">
+            add
+          </mat-icon>
+      
+        </div>
+      </div>
+    </form>
+    <div class="d-flex gap-2">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="submit()"
+        [disabled]="form.invalid"
+      >
+        Υποβολή
+      </button>
+    </div>
+  }
+</div>

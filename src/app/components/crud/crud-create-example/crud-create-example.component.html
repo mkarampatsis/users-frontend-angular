@@ -1,0 +1,150 @@
+<div class="d-flex flex-column gap-2">
+  <app-crud-navbar></app-crud-navbar>
+  <div>
+    <h4>CRUD Create Example</h4>
+    <h5>Εισαγωγή Πελάτη</h5>
+
+    @if (registrationStatus.success) {
+      <div class="alert alert-success mt-2 w-50">
+        <strong>Success:</strong> {{ registrationStatus.message }}
+      </div>
+    } @else {
+      <div class="alert alert-danger mt-2 w-50">
+        <strong>Error:</strong> {{ registrationStatus.message }}
+      </div>
+    }
+
+
+    <form [formGroup]="form" class="d-flex flex-column">
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput type="text" formControlName="username" />
+        @if (form.get("username")?.invalid && form.get("firstname")?.touched) {
+          <mat-error>Username is required</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" formControlName="firstname" />
+        @if (form.get("firstname")?.invalid && form.get("name")?.touched) {
+          <mat-error>First Name is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" formControlName="lastname" />
+        @if (form.get("lastname")?.invalid && form.get("lastname")?.touched) {
+          <mat-error>Last Name is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="email"
+          (blur)="check_duplicate_email()"
+        />
+        @if (form.get("email")?.hasError("duplicateEmail")) {
+          <mat-error>Email is already registered</mat-error>
+        } @else {
+          @if (form.get("email")?.invalid && form.get("email")?.touched) {
+            <mat-error>Email is missing or invalid</mat-error>
+          }
+        }
+      </mat-form-field>
+      <div class="d-flex flex-column" formGroupName="address">
+        <mat-form-field>
+          <mat-label>Area</mat-label>
+          <input matInput type="text" formControlName="area" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Street</mat-label>
+          <input matInput type="text" formControlName="street" />
+        </mat-form-field>
+      </div>
+      <div formArrayName="phone">
+        @for (p of phone.controls; let i = $index; track i) {
+          <div [formGroupName]="i" class="d-flex gap-3 align-items-center">
+            <mat-form-field>
+              <mat-label>Phone Number</mat-label>
+              <input matInput type="text" formControlName="number" />
+              <!-- @if (phone.get("number").invalid && phone.get("number").touched) { -->
+                <mat-error class="text-wrap">
+                  Ο αριθμός του τηλεφώνου είναι απαραίτητος
+                </mat-error>
+              <!-- } -->
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Type</mat-label>
+              <mat-select formControlName="type">
+                <mat-option value="Mobile">Κινητό</mat-option>
+                <mat-option value="Work">Εργασία</mat-option>
+                <mat-option value="Home">Σπίτι</mat-option>
+              </mat-select>
+              <!-- @if (phone.get("type").invalid && phone.get("type").touched) { -->
+                <mat-error class="text-wrap">
+                  Πρέπει να διαλέξετε κάποιον τύπο τηλεφώνου
+                </mat-error>
+              <!-- } -->
+            </mat-form-field>
+            @if (phone.controls.length > 1 && i !== 0) {
+              <mat-icon
+                role="button"
+                (click)="removePhoneNumber(i)"
+                class="cursor-pointer"
+                >delete</mat-icon
+              >
+            }
+            @if (phone.controls[i].valid) {
+              <mat-icon
+                role="button"
+                (click)="addPhoneNumber()"
+                class="cursor-pointer"
+                >add</mat-icon
+              >
+            }
+          </div>
+        }
+      </div>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+        @if (form.get("password")?.invalid && form.get("password")?.touched) {
+          <mat-error>Password is missing or invalid</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Confirm Password</mat-label>
+        <input matInput type="password" formControlName="confirmPassword" />
+        @if (form.get("confirmPassword")?.hasError("passwordMismatch")) {
+          <mat-error>Passwords do not match</mat-error>
+        } @else {
+          @if (
+            form.get("confirmPassword")?.invalid &&
+            form.get("confirmPassword")?.touched
+          ) {
+            <mat-error>Password is missing or invalid</mat-error>
+          }
+        }
+      </mat-form-field>
+    </form>
+  
+    <div class="d-flex gap-2">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="submit(form.value)"
+        [disabled]="form.invalid"
+      >
+        Υποβολή
+      </button>
+      <button mat-raised-button color="warn" (click)="form.reset()">
+        Επαναφορά
+      </button>
+    </div>
+  </div>
+</div>

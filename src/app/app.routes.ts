@@ -14,6 +14,11 @@ import { Step14UserCreate } from './components/step14-user-create/step14-user-cr
 import { RestrictedContentExampleComponent } from './components/restricted-content-example/restricted-content-example.component';
 import { authGuard } from './shared/guards/auth.guard';
 import { adminRoleGuard } from './shared/guards/admin-role.guard';
+import { CrudDashboardComponent } from './components/crud/crud-dashboard/crud-dashboard.component';
+import { CrudCreateExampleComponent } from './components/crud/crud-create-example/crud-create-example.component';
+import { CrudReadExampleComponent } from './components/crud/crud-read-example/crud-read-example.component';
+import { CrudUpdateExampleComponent } from './components/crud/crud-update-example/crud-update-example.component';
+import { CrudDeleteExampleComponent } from './components/crud/crud-delete-example/crud-delete-example.component';
 
 // Changes on Step 6 when creating Routes
 export const routes: Routes = [
@@ -39,6 +44,32 @@ export const routes: Routes = [
     canActivate: [authGuard,adminRoleGuard]
   },
   { path: 'restricted-content-example', component: RestrictedContentExampleComponent },
+  // For Crud Example
+  {
+    path: 'crud-example',
+    component: CrudDashboardComponent,
+    canActivate: [authGuard, adminRoleGuard],
+  },
+  {
+    path: 'crud-example/create',
+    component: CrudCreateExampleComponent,
+    canActivate: [authGuard, adminRoleGuard],
+  },
+  {
+    path: 'crud-example/read',
+    component: CrudReadExampleComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'crud-example/update',
+    component: CrudUpdateExampleComponent,
+    canActivate: [authGuard, adminRoleGuard],
+  },
+  {
+    path: 'crud-example/delete',
+    component: CrudDeleteExampleComponent,
+    canActivate: [authGuard, adminRoleGuard],
+  },
   { path: 'welcome', component: Step6WelcomeRouting },
   { path: '', redirectTo: '/welcome', pathMatch: 'full' },
 ];
