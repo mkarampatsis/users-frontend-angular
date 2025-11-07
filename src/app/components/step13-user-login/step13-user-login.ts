@@ -63,8 +63,7 @@ export class Step13UserLogin {
           email: decodedTokenSubject.email,
           roles: decodedTokenSubject.roles,
         });
-        console.log("Token", decodedTokenSubject);
-        this.router.navigate(['user-create-example']);
+        this.router.navigate(['crud-example']);
       },
       error: (error) => {
         console.error('Login error:', error);

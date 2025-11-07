@@ -36,6 +36,11 @@ import { IPhone } from 'src/app/shared/interfaces/mongo-backend';
 export class CrudUpdateExampleComponent {
   userService = inject(UserService);
 
+  registrationStatus: { success: boolean; message: string } = {
+    success: false,
+    message: 'Not attempted yet.',
+  };
+
   searchForm = new FormGroup({
     search: new FormControl(''),
   });
@@ -77,7 +82,6 @@ export class CrudUpdateExampleComponent {
     const searchValue = this.searchForm.value.search!;
     this.userService.getUserByEmail(searchValue)
       .subscribe((result) => {
-        console.log(result);
         this.form.patchValue({
           username: result.username,
           firstname: result.firstname,
@@ -88,8 +92,6 @@ export class CrudUpdateExampleComponent {
 
         // Clear the existing FormArray
         this.phone.clear();
-
-        console.log(result.phone);
 
         // Add a new FormGroup to the FormArray for each phoneNumber
         result.phone?.forEach((phoneNumber) => {
@@ -107,5 +109,19 @@ export class CrudUpdateExampleComponent {
   
   submit() {
     console.log(this.form.value)
+    // const username = this.form.controls.username.value;
+    // this.userService.updateUser(username, this.form.value ) registerUser(user).subscribe({
+    //   next: (response) => {
+    //     this.form.reset();
+    //     this.registrationStatus = { success: true, message: "User registered" };
+    //   },
+    //   error: (error) => {
+    //     console.error('There was an error!', error.message);
+    //     const message = error.message;
+    //     this.registrationStatus = { success: false, message };
+    //   },
+    // });
+    // this.registrationStatus = { success: true, message: "User registered" };
+    // this.registrationStatus = { success: false, message };
   }
 }

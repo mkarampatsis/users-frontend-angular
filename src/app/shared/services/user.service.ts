@@ -55,7 +55,7 @@ export class UserService {
   }
 
   registerUser(user: IUser) {
-    return this.http.post<{ msg: string }>(`${API_URL}`, user);
+    return this.http.post<IUser>(`${API_URL}`, user);
   }
 
   isTokenExpired(): boolean {
@@ -80,6 +80,10 @@ export class UserService {
     return this.http.get<IUser>(
       `${API_URL}/email/${email}`,
     );
+  }
+
+  updateUser(username:string, user:IUser){
+    return this.http.put<IUser>(`${API_URL}/${username}`, user);
   }
 }
 

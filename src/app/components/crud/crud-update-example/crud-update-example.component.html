@@ -2,6 +2,16 @@
   <app-crud-navbar></app-crud-navbar>
   <div>CRUD Update</div>
 
+  @if (registrationStatus.success) {
+    <div class="alert alert-success mt-2 w-50">
+      <strong>Success:</strong> {{ registrationStatus.message }}
+    </div>
+  } @else {
+    <div class="alert alert-danger mt-2 w-50">
+      <strong>Error:</strong> {{ registrationStatus.message }}
+    </div>
+  }
+
   <form [formGroup]="searchForm" (ngSubmit)="search()">
     <div class="d-flex gap-2">
       <input
