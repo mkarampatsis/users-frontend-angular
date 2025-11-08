@@ -22,4 +22,8 @@ export class CrudReadExampleComponent implements OnInit {
         this.users.set(result)
       })  
   }
+
+  addressJoin(user:IUser) {
+    return user.address? user.address?.area + ', '+ user.address?.street+', '+user.address?.number: '-'
+  }
 }

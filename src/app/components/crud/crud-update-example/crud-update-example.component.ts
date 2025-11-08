@@ -15,7 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { UserService } from 'src/app/shared/services/user.service';
-import { IPhone } from 'src/app/shared/interfaces/mongo-backend';
+import { IPhone, IUser } from 'src/app/shared/interfaces/mongo-backend';
 
 @Component({
     selector: 'app-crud-update-example',
@@ -93,10 +93,19 @@ export class CrudUpdateExampleComponent {
         // Clear the existing FormArray
         this.phone.clear();
 
-        // Add a new FormGroup to the FormArray for each phoneNumber
-        result.phone?.forEach((phoneNumber) => {
-          this.phone.push(this.createPhoneNumberFormGroup(phoneNumber));
-        });
+        console.log(result.phone, result.phone?.length)
+        if (result.phone?.length) {
+          // Add a new FormGroup to the FormArray for each phoneNumber
+          result.phone?.forEach((phoneNumber) => {
+            this.phone.push(this.createPhoneNumberFormGroup(phoneNumber));
+          });
+        } else {
+          this.phone.push(
+            new FormGroup({
+              number: new FormControl('', Validators.required),
+              type: new FormControl('', Validators.required),
+            }));
+        }
       });
   }
 
@@ -108,20 +117,17 @@ export class CrudUpdateExampleComponent {
   }
   
   submit() {
-    console.log(this.form.value)
-    // const username = this.form.controls.username.value;
-    // this.userService.updateUser(username, this.form.value ) registerUser(user).subscribe({
-    //   next: (response) => {
-    //     this.form.reset();
-    //     this.registrationStatus = { success: true, message: "User registered" };
-    //   },
-    //   error: (error) => {
-    //     console.error('There was an error!', error.message);
-    //     const message = error.message;
-    //     this.registrationStatus = { success: false, message };
-    //   },
-    // });
-    // this.registrationStatus = { success: true, message: "User registered" };
-    // this.registrationStatus = { success: false, message };
+    const username = this.form.controls.username.value || '';
+    this.userService.updateUser(username, this.form.value as IUser ).subscribe({
+      next: (response) => {
+        this.form.reset();
+        this.registrationStatus = { success: true, message: "User updated" };
+      },
+      error: (error) => {
+        console.error('There was an error!', error.message);
+        const message = error.message;
+        this.registrationStatus = { success: false, message };
+      },
+    });
   }
 }

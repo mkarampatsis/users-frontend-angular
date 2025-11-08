@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { CrudNavbarComponent } from '../crud-navbar/crud-navbar.component';
 // import { CustomerService } from 'src/app/shared/services/customer.service';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -21,6 +22,7 @@ import { IUser } from 'src/app/shared/interfaces/mongo-backend';
 @Component({
   selector: 'app-crud-create-example',
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     CrudNavbarComponent,
     MatFormFieldModule,
@@ -97,8 +99,6 @@ export class CrudCreateExampleComponent {
   }
 
   submit(value: any) {
-    console.log(this.form.value);
-    // const customer = this.form.value as Customer;
     const user = this.form.value as IUser;
 
     this.userService.registerUser(user).subscribe({

@@ -85,6 +85,10 @@ export class UserService {
   updateUser(username:string, user:IUser){
     return this.http.put<IUser>(`${API_URL}/${username}`, user);
   }
+
+  deleteUser(username:string){
+    return this.http.delete<IUser>(`${API_URL}/${username}`);
+  }
 }
 
 // Here’s what each part means:
