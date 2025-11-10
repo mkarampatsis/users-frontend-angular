@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "deploy": "ng build --prod --base-href 'https://mkarampatsis.github.io/users-frontend-angular/'",
-    "gitdeploy": "ng build --base-href 'https://mkarampatsis.github.io/users-frontend-angular/'" 
+    "gitdeploy": "ng deploy --base-href=https://mkarampatsis.github.io/users-frontend-angular/" 
   },
   "prettier": {
     "printWidth": 100,
