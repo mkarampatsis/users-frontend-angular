@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-step6-welcome-routing',
@@ -8,4 +9,5 @@ import { Component } from '@angular/core';
 })
 export class Step6WelcomeRouting {
   name = 'Coding Factory';
+  build = environment.production;
 }
