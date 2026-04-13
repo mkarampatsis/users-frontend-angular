@@ -10,6 +10,7 @@ import { Step10TemplateDrivenForms } from './components/step10-template-driven-f
 import { Step11ReactiveForms } from './components/step11-reactive-forms/step11-reactive-forms';
 import { Step12HttpClientService } from './components/step12-http-client-service/step12-http-client-service';
 import { Step13UserLogin } from './components/step13-user-login/step13-user-login';
+import { Step14GoogleLogin } from './components/step14-google-login/step14-google-login';
 import { RestrictedContentExampleComponent } from './components/restricted-content-example/restricted-content-example.component';
 import { authGuard } from './shared/guards/auth.guard';
 import { adminRoleGuard } from './shared/guards/admin-role.guard';
@@ -37,6 +38,7 @@ export const routes: Routes = [
   { path: 'reactive-form-example', component: Step11ReactiveForms },
   { path: 'http-client-example', component: Step12HttpClientService },
   { path: 'user-login-example', component: Step13UserLogin },
+  { path: 'google-login-example', component: Step14GoogleLogin},
   { path: 'restricted-content-example', component: RestrictedContentExampleComponent },
   // For Crud Example
   {

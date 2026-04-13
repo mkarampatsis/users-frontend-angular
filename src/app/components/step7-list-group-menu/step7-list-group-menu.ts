@@ -38,6 +38,10 @@ export class Step7ListGroupMenu {
       text: 'Step13 User Login',
       routerLink: 'user-login-example',
     },
+    {
+      text: 'Step14 Google Login',
+      routerLink: 'google-login-example',
+    },
     { text: 'CRUD Example', routerLink: 'crud-example' },
     // {
     //   text: 'Restricted Content Example',
