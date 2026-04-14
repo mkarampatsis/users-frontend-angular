@@ -6,7 +6,7 @@ import { jwtDecode } from 'jwt-decode';
 import { IGoogleUser } from '../interfaces/google-user';
 import { environment } from 'src/environments/environment';
 
-const API_AUTH_URL = `${environment.apiURL}/google-auth`;
+const API_AUTH_URL = `${environment.apiURL}/api/auth/google-auth`;
 
 declare const google: any;
 
@@ -35,7 +35,7 @@ export class GoogleService {
   }
 
    loginGoogle(token: string) {
-    return this.http.post<{token:string}>(`${API_AUTH_URL}/google`,{token});
+    return this.http.post<{token:string}>(`${API_AUTH_URL}`,{token});
   }
 
   logout() {
@@ -61,16 +61,16 @@ export class GoogleService {
 
     // send to backend
     // response.credential is the JWT token
-    // console.log('Encoded JWT ID token: ' + response.credential);
+    console.log('Encoded JWT ID token: ' + response.credential);
     this.loginGoogle(idToken)
       .subscribe({
         next: (res) => {
           // console.log('Backend login success', res)
           const decodedToken = jwtDecode(res.token) as IGoogleUser;
           this.googleUser.set(decodedToken);
-          localStorage.setItem('accessToken', res.token);
+          localStorage.setItem('google-access_token', res.token);
           // console.log('Decoded token:', decodedToken);
-          this.router.navigate(['/than-cad']);
+          this.router.navigate(['/welcome']);
         },
         error: (err) => console.error('Backend login error', err),
       })
