@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { Person } from 'src/app/shared/interfaces/person';
 import { sortBy } from 'lodash-es';
 
@@ -13,6 +13,19 @@ export class Step8SimpleDataTable {
   // Added in step 9 for output component
   @Output() personCLicked = new EventEmitter<Person>();
   
+  // ngOnInit() {
+  //   console.log('Data received in Step8SimpleDataTable:', this.data);
+  //   this.sortData('firstname'); // Initial sort by firstname
+  // }
+
+  // If we want to use ngOnChanges to detect changes in the input data, we can implement it like this:
+  // ngOnChanges(changes: SimpleChanges) {
+  //   console.log('Data changed in Step8SimpleDataTable:', changes['data']);
+  //   if (changes['data'] && this.data) {
+  //     this.sortData('firstname'); // Re-sort by firstname when data changes
+  //   }
+  // }
+
   sortOrder = {
     firstname: 'none',
     lastname: 'none',

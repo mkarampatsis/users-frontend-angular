@@ -22,5 +22,9 @@ export class Step10TemplateDrivenForms {
   onPerson(person: Person) {
     this.currentPerson = person;
     this.persons.push(person);
+    // If we want to use ngOnChanges in Step8SimpleDataTable, we need to create a new array reference to trigger change detection 
+    // this.persons = [...this.persons, person]; // Alternative way to trigger change detection
+    // console.log('Current person in Step10TemplateDrivenForms:', this.currentPerson);
+    // console.log('Persons list in Step10TemplateDrivenForms:', this.persons);
   }
 }
